@@ -74,7 +74,7 @@ export function NewsCarousel({ items }: { items: NewsItem[] }) {
             href={item.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="gradient-underline font-display text-accent focus-visible:outline-accent mt-6 inline-block tracking-wide uppercase focus-visible:outline-2 focus-visible:outline-offset-4"
+            className="link-underline font-display text-accent focus-visible:outline-accent mt-6 inline-block tracking-wide uppercase focus-visible:outline-2 focus-visible:outline-offset-4"
           >
             Read more &rarr;
           </a>
@@ -105,9 +105,7 @@ export function NewsCarousel({ items }: { items: NewsItem[] }) {
               >
                 <span
                   className={`h-2.5 rounded-full transition-all duration-300 ${
-                    i === index
-                      ? "from-accent to-accent-3 w-7 bg-gradient-to-r"
-                      : "bg-muted/40 w-2.5"
+                    i === index ? "bg-accent w-7" : "bg-muted/40 w-2.5"
                   }`}
                 />
               </button>

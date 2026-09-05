@@ -28,12 +28,12 @@ export function ContactCta() {
 
       <a
         href={`mailto:${EMAIL}`}
-        className="glass-card focus-visible:outline-accent relative mt-2 inline-flex items-center gap-2 rounded-full px-8 py-4 text-2xl transition-shadow hover:shadow-[0_0_36px_-10px_var(--accent-2)] focus-visible:outline-2 focus-visible:outline-offset-4"
+        className="glass-card focus-visible:outline-accent relative mt-2 inline-flex items-center gap-2 rounded-full px-8 py-4 text-2xl transition-shadow hover:shadow-[0_0_36px_-10px_var(--accent)] focus-visible:outline-2 focus-visible:outline-offset-4"
       >
         <span className="font-display text-accent tracking-wide uppercase">
           Get in touch
         </span>
-        <span aria-hidden="true" className="font-display text-accent-3">
+        <span aria-hidden="true" className="font-display text-accent">
           &rarr;
         </span>
       </a>

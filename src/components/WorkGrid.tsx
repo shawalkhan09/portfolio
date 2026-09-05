@@ -33,7 +33,7 @@ export function WorkGrid({ projects }: { projects: Project[] }) {
             }
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
-            className="glass-card focus-visible:outline-accent group block overflow-hidden rounded-xl transition-shadow hover:shadow-[0_0_40px_-14px_var(--accent-2)] focus-visible:outline-2 focus-visible:outline-offset-4"
+            className="glass-card focus-visible:outline-accent group block overflow-hidden rounded-xl transition-shadow hover:shadow-[0_0_40px_-14px_var(--accent)] focus-visible:outline-2 focus-visible:outline-offset-4"
           >
             {project.media && (
               <div className="relative aspect-video w-full overflow-hidden">
@@ -64,7 +64,7 @@ export function WorkGrid({ projects }: { projects: Project[] }) {
                   </li>
                 ))}
               </ul>
-              <span className="gradient-underline font-display text-accent mt-4 inline-block text-sm tracking-wide uppercase">
+              <span className="link-underline font-display text-accent mt-4 inline-block text-sm tracking-wide uppercase">
                 {project.linkLabel} &rarr;
               </span>
             </div>

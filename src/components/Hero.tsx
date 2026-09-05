@@ -95,7 +95,7 @@ export function Hero({ projects }: { projects: Project[] }) {
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="gradient-underline font-display text-accent focus-visible:outline-accent mt-6 inline-block tracking-wide uppercase focus-visible:outline-2 focus-visible:outline-offset-4"
+              className="link-underline font-display text-accent focus-visible:outline-accent mt-6 inline-block tracking-wide uppercase focus-visible:outline-2 focus-visible:outline-offset-4"
             >
               {project.linkLabel} &rarr;
             </a>
@@ -120,7 +120,7 @@ export function Hero({ projects }: { projects: Project[] }) {
               exit={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.97 }}
               transition={{ duration: prefersReducedMotion ? 0 : 0.4 }}
             >
-              <BrowserFrame className="shadow-[0_0_60px_-20px_var(--accent-2)]">
+              <BrowserFrame className="shadow-[0_0_60px_-20px_var(--accent)]">
                 <div className="relative aspect-video w-full">
                   {useStaticImage ? (
                     <Image
@@ -155,7 +155,7 @@ export function Hero({ projects }: { projects: Project[] }) {
             onClick={togglePause}
             aria-pressed={isPaused}
             aria-label={isPaused ? "Play slideshow" : "Pause slideshow"}
-            className="glass-card focus-visible:outline-accent flex h-11 w-11 items-center justify-center rounded-full transition-shadow hover:shadow-[0_0_20px_-6px_var(--accent-2)] focus-visible:outline-2 focus-visible:outline-offset-4"
+            className="glass-card focus-visible:outline-accent flex h-11 w-11 items-center justify-center rounded-full transition-shadow hover:shadow-[0_0_20px_-6px_var(--accent)] focus-visible:outline-2 focus-visible:outline-offset-4"
           >
             {isPaused ? (
               <svg
@@ -190,9 +190,7 @@ export function Hero({ projects }: { projects: Project[] }) {
             >
               <span
                 className={`h-2.5 rounded-full transition-all duration-300 ${
-                  i === index
-                    ? "from-accent to-accent-3 w-7 bg-gradient-to-r"
-                    : "bg-muted/40 w-2.5"
+                  i === index ? "bg-accent w-7" : "bg-muted/40 w-2.5"
                 }`}
               />
             </button>

@@ -16,7 +16,7 @@ export function EditorialSplit({ panels }: { panels: EditorialPanel[] }) {
     >
       <div
         aria-hidden="true"
-        className="from-accent via-accent-2 to-accent-3 pointer-events-none absolute inset-y-0 left-1/2 hidden w-px -translate-x-1/2 bg-gradient-to-b opacity-70 shadow-[0_0_16px_var(--accent-2)] sm:block"
+        className="bg-accent pointer-events-none absolute inset-y-0 left-1/2 hidden w-px -translate-x-1/2 opacity-70 shadow-[0_0_16px_var(--accent)] sm:block"
       />
       {panels.map((panel, i) => (
         <motion.div
@@ -39,8 +39,7 @@ export function EditorialSplit({ panels }: { panels: EditorialPanel[] }) {
             hovered !== null && hovered !== i ? "grayscale" : ""
           }`}
           style={{
-            background:
-              "linear-gradient(160deg, color-mix(in srgb, var(--accent-2) 7%, transparent), transparent 60%)",
+            background: "color-mix(in srgb, var(--accent) 5%, transparent)",
           }}
         >
           <p className="text-accent font-mono text-sm tracking-widest uppercase">

@@ -1,0 +1,6 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#1a1c20" />
+  <text x="50%" y="50%" fill="#5b6470" font-family="sans-serif" font-size="24" text-anchor="middle">
+    Update pending
+  </text>
+</svg>

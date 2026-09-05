@@ -46,6 +46,7 @@ export function Hero({ slides }: { slides: HeroSlide[] }) {
 
   return (
     <section
+      id="work"
       aria-roledescription="carousel"
       aria-label="Featured projects"
       onMouseEnter={onMouseEnter}

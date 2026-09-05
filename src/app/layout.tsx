@@ -55,7 +55,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
-      <body id="top" className="flex min-h-full flex-col font-sans">
+      <body
+        id="top"
+        suppressHydrationWarning
+        className="flex min-h-full flex-col font-sans"
+      >
         <AuroraBackground className="fixed inset-0 -z-10 overflow-hidden" />
         <Header />
         <div className="flex flex-1 flex-col pt-16">{children}</div>

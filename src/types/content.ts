@@ -17,7 +17,8 @@ export type Project = {
   /** Short excerpt already present in `description`, called out separately for emphasis. */
   stat?: string;
   stackTags: string[];
-  media: {
+  /** Omitted when no screenshot/clip exists -- Work grid renders a text-only card. */
+  media?: {
     type: "video" | "image";
     src: string;
     fallbackImage: string;

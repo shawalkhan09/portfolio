@@ -52,8 +52,14 @@ export function Hero({ projects }: { projects: Project[] }) {
   );
 
   const project = projects[index];
+  const media = project.media;
+  if (!media) {
+    throw new Error(
+      `Hero project "${project.id}" is featured but has no media`,
+    );
+  }
   const useStaticImage =
-    project.media.type === "image" || prefersReducedMotion || saveData;
+    media.type === "image" || prefersReducedMotion || saveData;
   const fadeDistance = prefersReducedMotion ? 0 : 16;
 
   return (
@@ -118,7 +124,7 @@ export function Hero({ projects }: { projects: Project[] }) {
                 <div className="relative aspect-video w-full">
                   {useStaticImage ? (
                     <Image
-                      src={project.media.fallbackImage}
+                      src={media.fallbackImage}
                       alt={`${project.title} screenshot`}
                       fill
                       priority={index === 0}
@@ -127,7 +133,7 @@ export function Hero({ projects }: { projects: Project[] }) {
                     />
                   ) : (
                     <video
-                      src={project.media.src}
+                      src={media.src}
                       autoPlay
                       muted
                       loop

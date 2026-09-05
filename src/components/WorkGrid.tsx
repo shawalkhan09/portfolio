@@ -35,15 +35,17 @@ export function WorkGrid({ projects }: { projects: Project[] }) {
             transition={{ duration: 0.5, delay: i * 0.08 }}
             className="glass-card focus-visible:outline-accent group block overflow-hidden rounded-xl transition-shadow hover:shadow-[0_0_40px_-14px_var(--accent-2)] focus-visible:outline-2 focus-visible:outline-offset-4"
           >
-            <div className="relative aspect-video w-full overflow-hidden">
-              <Image
-                src={project.media.fallbackImage}
-                alt={`${project.title} screenshot`}
-                fill
-                sizes="(min-width: 640px) 50vw, 100vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
+            {project.media && (
+              <div className="relative aspect-video w-full overflow-hidden">
+                <Image
+                  src={project.media.fallbackImage}
+                  alt={`${project.title} screenshot`}
+                  fill
+                  sizes="(min-width: 640px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+            )}
             <div className="p-6">
               <p className="text-accent font-mono text-xs tracking-widest uppercase">
                 {project.category}

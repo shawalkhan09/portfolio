@@ -66,4 +66,15 @@ export const projects: Project[] = [
     linkLabel: "View project",
     featured: false,
   },
+  {
+    id: "llama-xr-extended",
+    category: "Machine Learning",
+    title: "LLaMA-XR Extended",
+    description:
+      "Reproduction and extension of a 2026 radiology report-generation paper (LLaMA + QLoRA), implemented from scratch since the authors released no code, then extended with the clinical-accuracy eval and hallucination checks their own limitations section calls for.",
+    stackTags: ["Python", "PyTorch", "LLM Fine-tuning"],
+    href: "https://github.com/shawalkhan09/llama-xr-extended",
+    linkLabel: "View project",
+    featured: false,
+  },
 ];

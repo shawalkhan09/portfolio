@@ -65,10 +65,14 @@ export function NewsCarousel({ items }: { items: NewsItem[] }) {
               aria-selected={i === index}
               aria-label={`Go to ${it.title}`}
               onClick={() => goTo(i)}
-              className={`focus-visible:outline-accent h-2 w-2 rounded-full focus-visible:outline-2 focus-visible:outline-offset-4 ${
-                i === index ? "bg-accent" : "bg-muted/40"
-              }`}
-            />
+              className="focus-visible:outline-accent grid place-items-center p-2 focus-visible:outline-2 focus-visible:outline-offset-4"
+            >
+              <span
+                className={`h-2 w-2 rounded-full ${
+                  i === index ? "bg-accent" : "bg-muted/40"
+                }`}
+              />
+            </button>
           ))}
         </div>
       </div>

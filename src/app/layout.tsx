@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Inter } from "next/font/google";
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import "./globals.css";
 
 const displayFont = Bebas_Neue({
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body id="top" className="flex min-h-full flex-col font-sans">
         <Header />
         <div className="flex flex-1 flex-col pt-16">{children}</div>
+        <Footer />
       </body>
     </html>
   );

@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { navSections } from "@/data/nav";
 import { MenuOverlay } from "./MenuOverlay";
 
+const siteLinks = navSections.filter((section) => section.href);
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,7 +50,7 @@ export function Header() {
       </header>
 
       <MenuOverlay
-        sections={navSections}
+        sections={siteLinks}
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
         triggerRef={toggleRef}

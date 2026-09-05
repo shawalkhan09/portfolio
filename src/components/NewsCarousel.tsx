@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import type { NewsItem } from "@/types/content";
 import { useSlideshow } from "@/hooks/useSlideshow";
 
@@ -20,10 +21,11 @@ export function NewsCarousel({ items }: { items: NewsItem[] }) {
       <h2 className="text-display-lg">Updates</h2>
 
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
-        {/* eslint-disable-next-line @next/next/no-img-element -- placeholder SVG, swapped for next/image once real assets land */}
-        <img
+        <Image
           src={item.image}
           alt=""
+          width={1728}
+          height={975}
           className="aspect-video w-full object-cover"
         />
         <div>

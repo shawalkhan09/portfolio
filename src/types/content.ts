@@ -28,7 +28,7 @@ export type EditorialPanel = {
   eyebrow: string;
   headline: string;
   body: string;
-  image: string;
+  image?: string;
   href?: string;
   linkLabel?: string;
 };

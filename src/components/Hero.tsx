@@ -72,7 +72,7 @@ export function Hero({ projects }: { projects: Project[] }) {
         if (e.key === "ArrowRight") next();
         else if (e.key === "ArrowLeft") prev();
       }}
-      className="relative isolate overflow-hidden px-6 py-24 sm:px-12 lg:min-h-[80vh] lg:py-0"
+      className="relative isolate overflow-hidden px-6 py-24 sm:px-12 lg:pt-24 lg:pb-12"
     >
       <AuroraBackground strong className="absolute inset-0 overflow-hidden" />
 
@@ -148,7 +148,7 @@ export function Hero({ projects }: { projects: Project[] }) {
         </motion.div>
       </div>
 
-      <div className="relative z-10 mt-12 flex items-center gap-4 lg:absolute lg:right-12 lg:bottom-8 lg:mt-0">
+      <div className="relative z-10 mt-12 flex items-center justify-center gap-4 lg:justify-end lg:pr-12">
         {!prefersReducedMotion && (
           <button
             type="button"

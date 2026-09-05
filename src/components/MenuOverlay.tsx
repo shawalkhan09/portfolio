@@ -82,7 +82,7 @@ export function MenuOverlay({
         aria-label="Site menu"
         aria-hidden={!isOpen}
         inert={!isOpen}
-        className="bg-background fixed inset-y-0 right-0 z-50 flex w-full max-w-sm flex-col justify-center px-10"
+        className="bg-background fixed inset-y-0 right-0 z-50 flex w-full max-w-sm flex-col overflow-y-auto px-10 py-8"
         initial={false}
         animate={
           isOpen
@@ -97,11 +97,14 @@ export function MenuOverlay({
         <button
           type="button"
           onClick={onClose}
-          className="font-display focus-visible:outline-accent absolute top-6 right-6 text-sm tracking-wide uppercase focus-visible:outline-2 focus-visible:outline-offset-4"
+          className="font-display focus-visible:outline-accent self-end text-sm tracking-wide uppercase focus-visible:outline-2 focus-visible:outline-offset-4"
         >
           Close
         </button>
-        <nav aria-label="Primary">
+        <nav
+          aria-label="Primary"
+          className="flex flex-1 flex-col justify-center"
+        >
           <ul className="flex flex-col gap-6">
             {sections.map((section) => (
               <li key={section.label}>

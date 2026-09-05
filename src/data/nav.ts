@@ -12,11 +12,9 @@ export const navSections: NavSection[] = [
   {
     label: "Elsewhere",
     links: [
-      // TODO: replace with real profile/resume URLs.
-      { label: "GitHub", href: "#" },
-      { label: "LinkedIn", href: "#" },
-      { label: "Resume", href: "#" },
-      { label: "Freelance", href: "#" },
+      { label: "GitHub", href: "https://github.com/shawalkhan09" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/shawalkhan09/" },
+      { label: "Resume", href: "/resume.pdf" },
     ],
   },
 ];

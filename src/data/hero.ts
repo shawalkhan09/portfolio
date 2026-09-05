@@ -14,7 +14,7 @@ export const heroSlides: HeroSlide[] = [
       src: "/hero/loan-default-app.svg",
       fallbackImage: "/hero/loan-default-app.svg",
     },
-    href: "#",
+    href: "https://loan-default-app-2tq6c3nfuti4k9gzt84ry9.streamlit.app/",
     linkLabel: "View project",
   },
   {
@@ -28,7 +28,7 @@ export const heroSlides: HeroSlide[] = [
       src: "/hero/seizure-prediction-ml.svg",
       fallbackImage: "/hero/seizure-prediction-ml.svg",
     },
-    href: "#",
+    href: "https://github.com/shawalkhan09/seizure-prediction-ml",
     linkLabel: "View project",
   },
   {

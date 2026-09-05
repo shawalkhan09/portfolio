@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { navSections } from "@/data/nav";
+import { SITE_NAME } from "@/lib/site";
 import { MenuOverlay } from "./MenuOverlay";
 
 const siteLinks = navSections.filter((section) => section.href);
@@ -34,7 +35,7 @@ export function Header() {
             href="#top"
             className="font-display text-display-sm focus-visible:outline-accent uppercase focus-visible:outline-2 focus-visible:outline-offset-4"
           >
-            Portfolio
+            {SITE_NAME}
           </a>
           <button
             ref={toggleRef}

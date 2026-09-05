@@ -39,6 +39,8 @@ export function NewsCarousel({ items }: { items: NewsItem[] }) {
           <p className="text-muted mt-4 max-w-md">{item.excerpt}</p>
           <a
             href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
             className="font-display text-accent focus-visible:outline-accent mt-6 inline-block tracking-wide uppercase focus-visible:outline-2 focus-visible:outline-offset-4"
           >
             Read more &rarr;
@@ -46,36 +48,38 @@ export function NewsCarousel({ items }: { items: NewsItem[] }) {
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
-        <button
-          type="button"
-          onClick={togglePause}
-          aria-pressed={isPaused}
-          aria-label={isPaused ? "Play updates" : "Pause updates"}
-          className="font-display text-foreground focus-visible:outline-accent text-sm tracking-wide uppercase focus-visible:outline-2 focus-visible:outline-offset-4"
-        >
-          {isPaused ? "Play" : "Pause"}
-        </button>
-        <div role="tablist" aria-label="Updates" className="flex gap-2">
-          {items.map((it, i) => (
-            <button
-              key={it.id}
-              type="button"
-              role="tab"
-              aria-selected={i === index}
-              aria-label={`Go to ${it.title}`}
-              onClick={() => goTo(i)}
-              className="focus-visible:outline-accent grid place-items-center p-2 focus-visible:outline-2 focus-visible:outline-offset-4"
-            >
-              <span
-                className={`h-2 w-2 rounded-full ${
-                  i === index ? "bg-accent" : "bg-muted/40"
-                }`}
-              />
-            </button>
-          ))}
+      {items.length > 1 && (
+        <div className="flex items-center gap-4">
+          <button
+            type="button"
+            onClick={togglePause}
+            aria-pressed={isPaused}
+            aria-label={isPaused ? "Play updates" : "Pause updates"}
+            className="font-display text-foreground focus-visible:outline-accent text-sm tracking-wide uppercase focus-visible:outline-2 focus-visible:outline-offset-4"
+          >
+            {isPaused ? "Play" : "Pause"}
+          </button>
+          <div role="tablist" aria-label="Updates" className="flex gap-2">
+            {items.map((it, i) => (
+              <button
+                key={it.id}
+                type="button"
+                role="tab"
+                aria-selected={i === index}
+                aria-label={`Go to ${it.title}`}
+                onClick={() => goTo(i)}
+                className="focus-visible:outline-accent grid place-items-center p-2 focus-visible:outline-2 focus-visible:outline-offset-4"
+              >
+                <span
+                  className={`h-2 w-2 rounded-full ${
+                    i === index ? "bg-accent" : "bg-muted/40"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }

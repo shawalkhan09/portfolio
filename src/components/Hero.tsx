@@ -91,6 +91,8 @@ export function Hero({ slides }: { slides: HeroSlide[] }) {
         <p className="text-muted mt-4 max-w-lg">{slide.description}</p>
         <a
           href={slide.href}
+          target="_blank"
+          rel="noopener noreferrer"
           className="font-display text-accent focus-visible:outline-accent mt-6 inline-block tracking-wide uppercase focus-visible:outline-2 focus-visible:outline-offset-4"
         >
           {slide.linkLabel} &rarr;

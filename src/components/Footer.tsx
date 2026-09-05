@@ -1,4 +1,5 @@
 import { navSections } from "@/data/nav";
+import { SITE_NAME } from "@/lib/site";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -26,6 +27,8 @@ export function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-muted hover:text-accent focus-visible:outline-accent focus-visible:outline-2 focus-visible:outline-offset-4"
                     >
                       {link.label}
@@ -37,7 +40,9 @@ export function Footer() {
           </div>
         ))}
       </div>
-      <p className="text-muted mt-16 text-sm">&copy; {year} Portfolio</p>
+      <p className="text-muted mt-16 text-sm">
+        &copy; {year} {SITE_NAME}
+      </p>
     </footer>
   );
 }

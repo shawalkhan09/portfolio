@@ -1,0 +1,48 @@
+import type { HeroSlide } from "@/types/content";
+
+// TODO: swap placeholder media for real screenshots/clips and real
+// project URLs once supplied.
+export const heroSlides: HeroSlide[] = [
+  {
+    id: "loan-default-app",
+    eyebrow: "Machine Learning",
+    headline: "Loan Default Prediction",
+    description:
+      "Logistic Regression + Random Forest pipeline with SMOTE class balancing, ROC-AUC ~0.845. Deployed on Streamlit Cloud.",
+    media: {
+      type: "image",
+      src: "/hero/loan-default-app.svg",
+      fallbackImage: "/hero/loan-default-app.svg",
+    },
+    href: "#",
+    linkLabel: "View project",
+  },
+  {
+    id: "seizure-prediction-ml",
+    eyebrow: "Machine Learning",
+    headline: "Seizure Prediction",
+    description:
+      "Epileptic seizure prediction with a custom Diff-Logic (Differentiable Logic Gate Network) implementation that beat MLP baselines at every parameter budget.",
+    media: {
+      type: "image",
+      src: "/hero/seizure-prediction-ml.svg",
+      fallbackImage: "/hero/seizure-prediction-ml.svg",
+    },
+    href: "#",
+    linkLabel: "View project",
+  },
+  {
+    id: "pdfhamster",
+    eyebrow: "Web App",
+    headline: "PDF Hamster",
+    description:
+      "Flask web app with a set of PDF conversion tools, deployed at pdfhamster.com.",
+    media: {
+      type: "image",
+      src: "/hero/pdfhamster.svg",
+      fallbackImage: "/hero/pdfhamster.svg",
+    },
+    href: "https://pdfhamster.com",
+    linkLabel: "View project",
+  },
+];

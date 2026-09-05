@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Inter } from "next/font/google";
+import { Header } from "@/components/Header";
 import "./globals.css";
 
 const displayFont = Bebas_Neue({
@@ -32,7 +33,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
-      <body className="flex min-h-full flex-col font-sans">{children}</body>
+      <body id="top" className="flex min-h-full flex-col font-sans">
+        <Header />
+        <div className="flex flex-1 flex-col pt-16">{children}</div>
+      </body>
     </html>
   );
 }

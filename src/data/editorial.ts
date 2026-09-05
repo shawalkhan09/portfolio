@@ -5,7 +5,7 @@ export const editorialPanels: EditorialPanel[] = [
     id: "healthcare-ai",
     eyebrow: "Interests",
     headline: "Healthcare AI & NLP",
-    body: "Focused on applying machine learning to healthcare problems — from predictive modeling to natural language processing.",
+    body: "Focused on applying machine learning to healthcare problems, from predictive modeling to natural language processing.",
   },
   {
     id: "leadership",

@@ -2,9 +2,11 @@
 
 import { useSyncExternalStore } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import type { HeroSlide } from "@/types/content";
+import { AnimatePresence, motion } from "framer-motion";
+import type { Project } from "@/types/content";
 import { useSlideshow } from "@/hooks/useSlideshow";
+import { AuroraBackground } from "./AuroraBackground";
+import { BrowserFrame } from "./BrowserFrame";
 
 type NavigatorConnection = {
   saveData?: boolean;
@@ -31,101 +33,160 @@ function getSaveDataServerSnapshot() {
   return false;
 }
 
-export function Hero({ slides }: { slides: HeroSlide[] }) {
-  const { index, goTo, isPaused, togglePause, onMouseEnter, onMouseLeave } =
-    useSlideshow(slides.length);
-  const prefersReducedMotion = useReducedMotion();
+export function Hero({ projects }: { projects: Project[] }) {
+  const {
+    index,
+    goTo,
+    next,
+    prev,
+    isPaused,
+    togglePause,
+    prefersReducedMotion,
+    onMouseEnter,
+    onMouseLeave,
+  } = useSlideshow(projects.length);
   const saveData = useSyncExternalStore(
     subscribeSaveData,
     getSaveDataSnapshot,
     getSaveDataServerSnapshot,
   );
 
-  const slide = slides[index];
+  const project = projects[index];
   const useStaticImage =
-    slide.media.type === "image" || prefersReducedMotion || saveData;
+    project.media.type === "image" || prefersReducedMotion || saveData;
+  const fadeDistance = prefersReducedMotion ? 0 : 16;
 
   return (
     <section
-      id="work"
       aria-roledescription="carousel"
       aria-label="Featured projects"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className="relative flex min-h-[80vh] items-center overflow-hidden"
+      onKeyDown={(e) => {
+        if (e.key === "ArrowRight") next();
+        else if (e.key === "ArrowLeft") prev();
+      }}
+      className="relative isolate overflow-hidden px-6 py-24 sm:px-12 lg:min-h-[80vh] lg:py-0"
     >
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={slide.id}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: prefersReducedMotion ? 0 : 0.5 }}
-          className="absolute inset-0"
-        >
-          {useStaticImage ? (
-            <Image
-              src={slide.media.fallbackImage}
-              alt=""
-              fill
-              priority={index === 0}
-              sizes="100vw"
-              className="object-cover"
-            />
-          ) : (
-            <video
-              src={slide.media.src}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="h-full w-full object-cover"
-            />
-          )}
-          <div className="bg-background/60 absolute inset-0" />
-        </motion.div>
-      </AnimatePresence>
+      <AuroraBackground strong className="absolute inset-0 overflow-hidden" />
 
-      <div className="relative z-10 max-w-2xl px-6 sm:px-12">
-        <p className="font-display text-accent tracking-widest uppercase">
-          {slide.eyebrow}
-        </p>
-        <h1 className="text-display-xl mt-2">{slide.headline}</h1>
-        <p className="text-muted mt-4 max-w-lg">{slide.description}</p>
-        <a
-          href={slide.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-display text-accent focus-visible:outline-accent mt-6 inline-block tracking-wide uppercase focus-visible:outline-2 focus-visible:outline-offset-4"
+      <div className="relative z-10 grid grid-cols-1 items-center gap-12 lg:min-h-[80vh] lg:grid-cols-2 lg:gap-16">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={project.id}
+            initial={{ opacity: 0, y: fadeDistance }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -fadeDistance }}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.4 }}
+            className="bg-background/95 border-border max-w-xl rounded-2xl border p-8 backdrop-blur-sm sm:p-10"
+          >
+            <p className="text-accent font-mono text-sm tracking-widest uppercase">
+              {project.category}
+            </p>
+            <h1 className="text-display-xl mt-4">{project.title}</h1>
+            <p className="text-muted mt-4 max-w-lg">{project.description}</p>
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="gradient-underline font-display text-accent focus-visible:outline-accent mt-6 inline-block tracking-wide uppercase focus-visible:outline-2 focus-visible:outline-offset-4"
+            >
+              {project.linkLabel} &rarr;
+            </a>
+          </motion.div>
+        </AnimatePresence>
+
+        <motion.div
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.15}
+          onDragEnd={(_e, info) => {
+            if (info.offset.x < -50) next();
+            else if (info.offset.x > 50) prev();
+          }}
+          className="cursor-grab active:cursor-grabbing"
         >
-          {slide.linkLabel} &rarr;
-        </a>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.97 }}
+              transition={{ duration: prefersReducedMotion ? 0 : 0.4 }}
+            >
+              <BrowserFrame className="shadow-[0_0_60px_-20px_var(--accent-2)]">
+                <div className="relative aspect-video w-full">
+                  {useStaticImage ? (
+                    <Image
+                      src={project.media.fallbackImage}
+                      alt={`${project.title} screenshot`}
+                      fill
+                      priority={index === 0}
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                      className="pointer-events-none object-cover"
+                    />
+                  ) : (
+                    <video
+                      src={project.media.src}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="pointer-events-none h-full w-full object-cover"
+                    />
+                  )}
+                </div>
+              </BrowserFrame>
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
       </div>
 
-      <div className="absolute right-8 bottom-8 z-10 flex items-center gap-4">
-        <button
-          type="button"
-          onClick={togglePause}
-          aria-pressed={isPaused}
-          aria-label={isPaused ? "Play slideshow" : "Pause slideshow"}
-          className="font-display text-foreground focus-visible:outline-accent text-sm tracking-wide uppercase focus-visible:outline-2 focus-visible:outline-offset-4"
-        >
-          {isPaused ? "Play" : "Pause"}
-        </button>
-        <div role="tablist" aria-label="Slides" className="flex gap-2">
-          {slides.map((s, i) => (
+      <div className="relative z-10 mt-12 flex items-center gap-4 lg:absolute lg:right-12 lg:bottom-8 lg:mt-0">
+        {!prefersReducedMotion && (
+          <button
+            type="button"
+            onClick={togglePause}
+            aria-pressed={isPaused}
+            aria-label={isPaused ? "Play slideshow" : "Pause slideshow"}
+            className="glass-card focus-visible:outline-accent flex h-11 w-11 items-center justify-center rounded-full transition-shadow hover:shadow-[0_0_20px_-6px_var(--accent-2)] focus-visible:outline-2 focus-visible:outline-offset-4"
+          >
+            {isPaused ? (
+              <svg
+                viewBox="0 0 16 16"
+                className="ml-0.5 h-4 w-4 fill-current"
+                aria-hidden="true"
+              >
+                <path d="M3 2l11 6-11 6V2z" />
+              </svg>
+            ) : (
+              <svg
+                viewBox="0 0 16 16"
+                className="h-4 w-4 fill-current"
+                aria-hidden="true"
+              >
+                <rect x="3" y="2" width="3.5" height="12" />
+                <rect x="9.5" y="2" width="3.5" height="12" />
+              </svg>
+            )}
+          </button>
+        )}
+        <div role="tablist" aria-label="Projects" className="flex gap-2">
+          {projects.map((p, i) => (
             <button
-              key={s.id}
+              key={p.id}
               type="button"
               role="tab"
               aria-selected={i === index}
-              aria-label={`Go to ${s.headline}`}
+              aria-label={`Go to ${p.title}`}
               onClick={() => goTo(i)}
-              className="focus-visible:outline-accent grid place-items-center p-2 focus-visible:outline-2 focus-visible:outline-offset-4"
+              className="focus-visible:outline-accent grid h-11 w-11 place-items-center focus-visible:outline-2 focus-visible:outline-offset-4"
             >
               <span
-                className={`h-2 w-2 rounded-full ${
-                  i === index ? "bg-accent" : "bg-muted/40"
+                className={`h-2.5 rounded-full transition-all duration-300 ${
+                  i === index
+                    ? "from-accent to-accent-3 w-7 bg-gradient-to-r"
+                    : "bg-muted/40 w-2.5"
                 }`}
               />
             </button>

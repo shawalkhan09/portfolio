@@ -1,3 +1,5 @@
+import { AuroraBackground } from "./AuroraBackground";
+
 const EMAIL = "shawalbusiness@gmail.com";
 
 export function ContactCta() {
@@ -5,17 +7,35 @@ export function ContactCta() {
     <section
       id="contact"
       aria-label="Contact"
-      className="border-border flex flex-col items-center gap-6 border-t px-6 py-32 text-center"
+      className="border-border relative isolate flex flex-col items-center gap-6 overflow-hidden border-t px-6 py-32 text-center"
     >
-      <h2 className="text-display-xl">Let&rsquo;s work together</h2>
-      <p className="text-muted max-w-md">
+      <AuroraBackground className="absolute inset-0 overflow-hidden" />
+
+      <h2 className="relative">
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-1/2 left-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 leading-none whitespace-nowrap opacity-[0.07]"
+          style={{ fontSize: "clamp(3rem, 13vw, 10rem)" }}
+        >
+          Let&rsquo;s work together
+        </span>
+        <span className="text-display-xl">Let&rsquo;s work together</span>
+      </h2>
+
+      <p className="text-muted relative max-w-md">
         Open to freelance and collaboration opportunities.
       </p>
+
       <a
         href={`mailto:${EMAIL}`}
-        className="font-display text-accent focus-visible:outline-accent text-2xl tracking-wide uppercase focus-visible:outline-2 focus-visible:outline-offset-4"
+        className="glass-card focus-visible:outline-accent relative mt-2 inline-flex items-center gap-2 rounded-full px-8 py-4 text-2xl transition-shadow hover:shadow-[0_0_36px_-10px_var(--accent-2)] focus-visible:outline-2 focus-visible:outline-offset-4"
       >
-        Get in touch &rarr;
+        <span className="font-display text-accent tracking-wide uppercase">
+          Get in touch
+        </span>
+        <span aria-hidden="true" className="font-display text-accent-3">
+          &rarr;
+        </span>
       </a>
     </section>
   );

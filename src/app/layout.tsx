@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Inter } from "next/font/google";
+import { Bebas_Neue, Inter, JetBrains_Mono } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { AuroraBackground } from "@/components/AuroraBackground";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -14,6 +15,12 @@ const displayFont = Bebas_Neue({
 
 const bodyFont = Inter({
   variable: "--font-body",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const monoFont = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -43,12 +50,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${displayFont.variable} ${bodyFont.variable} h-full antialiased`}
+      className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
       <body id="top" className="flex min-h-full flex-col font-sans">
+        <AuroraBackground className="fixed inset-0 -z-10 overflow-hidden" />
         <Header />
         <div className="flex flex-1 flex-col pt-16">{children}</div>
         <Footer />

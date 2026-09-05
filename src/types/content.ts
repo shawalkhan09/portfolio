@@ -9,11 +9,14 @@ export type NavSection = {
   links: NavLink[];
 };
 
-export type HeroSlide = {
+export type Project = {
   id: string;
-  eyebrow: string;
-  headline: string;
+  category: string;
+  title: string;
   description: string;
+  /** Short excerpt already present in `description`, called out separately for emphasis. */
+  stat?: string;
+  stackTags: string[];
   media: {
     type: "video" | "image";
     src: string;
@@ -21,6 +24,8 @@ export type HeroSlide = {
   };
   href: string;
   linkLabel: string;
+  /** Shown in the hero teaser carousel; the Work grid always shows every project. */
+  featured: boolean;
 };
 
 export type EditorialPanel = {

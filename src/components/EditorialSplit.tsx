@@ -1,32 +1,54 @@
 "use client";
 
 import { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import type { EditorialPanel } from "@/types/content";
 
 export function EditorialSplit({ panels }: { panels: EditorialPanel[] }) {
   const [hovered, setHovered] = useState<number | null>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section
       id="about"
       aria-label="About"
-      className="grid grid-cols-1 sm:grid-cols-2"
+      className="relative grid grid-cols-1 sm:grid-cols-2"
     >
+      <div
+        aria-hidden="true"
+        className="from-accent via-accent-2 to-accent-3 pointer-events-none absolute inset-y-0 left-1/2 hidden w-px -translate-x-1/2 bg-gradient-to-b opacity-70 shadow-[0_0_16px_var(--accent-2)] sm:block"
+      />
       {panels.map((panel, i) => (
-        <div
+        <motion.div
           key={panel.id}
           onMouseEnter={() => setHovered(i)}
           onMouseLeave={() => setHovered(null)}
-          className={`border-border flex min-h-[60vh] flex-col justify-end p-8 transition-[filter] duration-300 sm:border-l sm:p-12 sm:first:border-l-0 ${
+          initial={
+            prefersReducedMotion
+              ? undefined
+              : { opacity: 0, y: 24, filter: "blur(8px)" }
+          }
+          whileInView={
+            prefersReducedMotion
+              ? undefined
+              : { opacity: 1, y: 0, filter: "blur(0px)" }
+          }
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5, delay: i * 0.1 }}
+          className={`flex min-h-[60vh] flex-col justify-end p-8 transition-[filter] duration-300 sm:p-12 ${
             hovered !== null && hovered !== i ? "grayscale" : ""
           }`}
+          style={{
+            background:
+              "linear-gradient(160deg, color-mix(in srgb, var(--accent-2) 7%, transparent), transparent 60%)",
+          }}
         >
-          <p className="font-display text-accent tracking-widest uppercase">
+          <p className="text-accent font-mono text-sm tracking-widest uppercase">
             {panel.eyebrow}
           </p>
           <h2 className="text-display-lg mt-2">{panel.headline}</h2>
           <p className="text-muted mt-4 max-w-md">{panel.body}</p>
-        </div>
+        </motion.div>
       ))}
     </section>
   );

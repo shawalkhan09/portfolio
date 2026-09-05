@@ -1,7 +1,5 @@
 import type { HeroSlide } from "@/types/content";
 
-// TODO: swap placeholder media for real screenshots/clips and real
-// project URLs once supplied.
 export const heroSlides: HeroSlide[] = [
   {
     id: "loan-default-app",
@@ -11,8 +9,8 @@ export const heroSlides: HeroSlide[] = [
       "Logistic Regression + Random Forest pipeline with SMOTE class balancing, ROC-AUC ~0.845. Deployed on Streamlit Cloud.",
     media: {
       type: "image",
-      src: "/hero/loan-default-app.svg",
-      fallbackImage: "/hero/loan-default-app.svg",
+      src: "/hero/loan-default.png",
+      fallbackImage: "/hero/loan-default.png",
     },
     href: "https://loan-default-app-2tq6c3nfuti4k9gzt84ry9.streamlit.app/",
     linkLabel: "View project",
@@ -25,8 +23,8 @@ export const heroSlides: HeroSlide[] = [
       "Epileptic seizure prediction with a custom Diff-Logic (Differentiable Logic Gate Network) implementation that beat MLP baselines at every parameter budget.",
     media: {
       type: "image",
-      src: "/hero/seizure-prediction-ml.svg",
-      fallbackImage: "/hero/seizure-prediction-ml.svg",
+      src: "/hero/seizure-prediction-ml.png",
+      fallbackImage: "/hero/seizure-prediction-ml.png",
     },
     href: "https://github.com/shawalkhan09/seizure-prediction-ml",
     linkLabel: "View project",
@@ -39,8 +37,8 @@ export const heroSlides: HeroSlide[] = [
       "Flask web app with a set of PDF conversion tools, deployed at pdfhamster.com.",
     media: {
       type: "image",
-      src: "/hero/pdfhamster.svg",
-      fallbackImage: "/hero/pdfhamster.svg",
+      src: "/hero/pdfhamster.png",
+      fallbackImage: "/hero/pdfhamster.png",
     },
     href: "https://pdfhamster.com",
     linkLabel: "View project",

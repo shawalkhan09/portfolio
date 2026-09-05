@@ -1,6 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { HeroSlide } from "@/types/content";
 import { useSlideshow } from "@/hooks/useSlideshow";
@@ -63,11 +64,13 @@ export function Hero({ slides }: { slides: HeroSlide[] }) {
           className="absolute inset-0"
         >
           {useStaticImage ? (
-            // eslint-disable-next-line @next/next/no-img-element -- placeholder SVG, swapped for next/image once real assets land
-            <img
+            <Image
               src={slide.media.fallbackImage}
               alt=""
-              className="h-full w-full object-cover"
+              fill
+              priority={index === 0}
+              sizes="100vw"
+              className="object-cover"
             />
           ) : (
             <video

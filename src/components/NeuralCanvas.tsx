@@ -157,5 +157,11 @@ export function NeuralCanvas({ className = "" }: { className?: string }) {
     };
   }, [prefersReducedMotion]);
 
-  return <canvas ref={canvasRef} aria-hidden="true" className={className} />;
+  return (
+    <canvas
+      ref={canvasRef}
+      aria-hidden="true"
+      className={`h-full w-full ${className}`}
+    />
+  );
 }

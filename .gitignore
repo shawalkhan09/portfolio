@@ -40,6 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# claude code session runtime state (machine/session-specific, not project config)
-.claude/*.lock
-.claude/settings.json
+# claude code session/config directory (not project config)
+.claude/

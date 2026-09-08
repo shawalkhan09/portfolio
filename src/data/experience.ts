@@ -5,7 +5,7 @@ export const experience: ExperienceEntry[] = [
     id: "code-club",
     role: "Machine Learning Intern",
     org: "Code Club",
-    period: "May 2026 - Present",
+    period: "May 2026 - June 2026",
   },
   {
     id: "qec-scale",
@@ -38,7 +38,7 @@ export const education: ExperienceEntry[] = [
     id: "imsciences",
     role: "Bachelor's degree, Computer Science",
     org: "Institute of Management Sciences (IM|Sciences)",
-    period: "September 2023 - August 2027",
+    period: "September 2023 - July 2027",
   },
   {
     id: "kskccs",

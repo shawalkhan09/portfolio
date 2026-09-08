@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { SITE_DESCRIPTION, SITE_NAME, VALUE_STATEMENT } from "@/lib/site";
 import { AuroraBackground } from "./AuroraBackground";
@@ -22,7 +23,15 @@ export function Hero() {
           transition={{ duration: prefersReducedMotion ? 0 : 0.5 }}
           className="max-w-xl"
         >
-          <p className="text-accent font-mono text-sm tracking-widest uppercase">
+          <Image
+            src="/profile.png"
+            alt={SITE_NAME}
+            width={96}
+            height={96}
+            priority
+            className="border-border h-24 w-24 rounded-full border object-cover"
+          />
+          <p className="text-accent mt-6 font-mono text-sm tracking-widest uppercase">
             {SITE_DESCRIPTION}
           </p>
           <h1 className="text-display-xl mt-4">{SITE_NAME}</h1>

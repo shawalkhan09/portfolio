@@ -84,6 +84,11 @@ export const projects: Project[] = [
     description:
       "A navigable 3D map of confirmed exoplanets built from real NASA Exoplanet Archive data: 36 planets across 27 systems, positioned by real coordinates with real orbital periods, radii, and masses.",
     stackTags: ["React Three Fiber", "Three.js", "NASA API"],
+    media: {
+      type: "image",
+      src: "/hero/exoplanet-explorer.png",
+      fallbackImage: "/hero/exoplanet-explorer.png",
+    },
     href: "https://exoplanet-explorer-lovat.vercel.app",
     linkLabel: "View project",
   },

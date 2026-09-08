@@ -79,7 +79,7 @@ export function GithubActivityView({
           >
             {truncate(lastCommit.message, 72)}
           </a>{" "}
-          on {lastCommit.repo.split("/")[1]}, {formatRelative(lastCommit.date)}
+          on {lastCommit.repo}, {formatRelative(lastCommit.date)}
         </p>
       )}
     </motion.div>

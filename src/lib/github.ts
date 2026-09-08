@@ -61,7 +61,7 @@ export async function getContributionCalendar(): Promise<ContributionCalendar | 
       }`,
       variables: { login: GITHUB_USERNAME },
     }),
-    next: { revalidate: 3600 },
+    next: { revalidate: 300 },
   });
 
   if (!res.ok) return null;
@@ -80,49 +80,73 @@ export async function getContributionCalendar(): Promise<ContributionCalendar | 
   };
 }
 
-type PushEvent = {
-  type: string;
-  repo: { name: string };
-  payload: { head?: string };
+type RepoCommitNode = {
+  name: string;
+  defaultBranchRef: {
+    target: {
+      oid: string;
+      message: string;
+      committedDate: string;
+      url: string;
+    };
+  } | null;
 };
 
-type CommitResponse = {
-  html_url: string;
-  commit: { message: string; author: { date: string } };
+type LastCommitGraphqlResponse = {
+  data?: {
+    user: { repositories: { nodes: RepoCommitNode[] } };
+  };
 };
 
 export async function getLastCommit(): Promise<LastCommit | null> {
   const token = process.env.GITHUB_TOKEN;
   if (!token) return null;
 
-  const headers = {
-    Authorization: `bearer ${token}`,
-    Accept: "application/vnd.github+json",
-  };
+  // Reads the latest commit straight off each repo's default branch ref,
+  // ordered by push time -- the public Events API was tried first but
+  // silently drops pushes (confirmed: a same-day push was still missing
+  // a full day later), so it can't be trusted for "most recent".
+  const res = await fetch("https://api.github.com/graphql", {
+    method: "POST",
+    headers: {
+      Authorization: `bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `query($login: String!) {
+        user(login: $login) {
+          repositories(first: 1, orderBy: {field: PUSHED_AT, direction: DESC}, ownerAffiliations: OWNER, isFork: false) {
+            nodes {
+              name
+              defaultBranchRef {
+                target {
+                  ... on Commit {
+                    oid
+                    message
+                    committedDate
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }`,
+      variables: { login: GITHUB_USERNAME },
+    }),
+    next: { revalidate: 300 },
+  });
 
-  const eventsRes = await fetch(
-    `https://api.github.com/users/${GITHUB_USERNAME}/events/public`,
-    { headers, next: { revalidate: 3600 } },
-  );
-  if (!eventsRes.ok) return null;
+  if (!res.ok) return null;
+  const json: LastCommitGraphqlResponse = await res.json();
+  const repo = json.data?.user.repositories.nodes[0];
+  const commit = repo?.defaultBranchRef?.target;
+  if (!repo || !commit) return null;
 
-  const events: PushEvent[] = await eventsRes.json();
-  const push = events.find((e) => e.type === "PushEvent" && e.payload.head);
-  if (!push?.payload.head) return null;
-
-  // The events feed only carries before/after SHAs, not the commit
-  // message -- a second request against the commit itself gets that.
-  const commitRes = await fetch(
-    `https://api.github.com/repos/${push.repo.name}/commits/${push.payload.head}`,
-    { headers, next: { revalidate: 3600 } },
-  );
-  if (!commitRes.ok) return null;
-
-  const commit: CommitResponse = await commitRes.json();
   return {
-    repo: push.repo.name,
-    message: commit.commit.message.split("\n")[0],
-    url: commit.html_url,
-    date: commit.commit.author.date,
+    repo: repo.name,
+    message: commit.message.split("\n")[0],
+    url: commit.url,
+    date: commit.committedDate,
   };
 }

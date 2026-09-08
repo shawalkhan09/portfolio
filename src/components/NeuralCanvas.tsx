@@ -3,7 +3,9 @@
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 
-const NODE_COUNT = 40;
+const AREA_PER_NODE = 12000;
+const MIN_NODES = 24;
+const MAX_NODES = 130;
 const CONNECT_DISTANCE = 140;
 const CURSOR_RADIUS = 160;
 
@@ -12,7 +14,9 @@ type Node = { x: number; y: number; vx: number; vy: number };
 // Signature hero visual: a constellation of drifting nodes with
 // distance-based connecting lines, brightening near the cursor. Plain
 // Canvas 2D (no new dependency), fully static under reduced-motion.
-export function NeuralCanvas() {
+// Node count scales with canvas area so density stays consistent
+// whether it's filling a small mobile hero or a wide desktop one.
+export function NeuralCanvas({ className = "" }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
@@ -42,7 +46,11 @@ export function NeuralCanvas() {
     }
 
     function seed() {
-      nodes = Array.from({ length: NODE_COUNT }, () => ({
+      const count = Math.max(
+        MIN_NODES,
+        Math.min(MAX_NODES, Math.floor((width * height) / AREA_PER_NODE)),
+      );
+      nodes = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.15,
@@ -119,11 +127,17 @@ export function NeuralCanvas() {
       mouse.y = -9999;
     }
 
+    function handleResize() {
+      resize();
+      seed();
+      if (prefersReducedMotion) draw();
+    }
+
     resize();
     seed();
     draw();
 
-    window.addEventListener("resize", resize);
+    window.addEventListener("resize", handleResize);
     if (!prefersReducedMotion) {
       canvas.addEventListener("pointermove", handlePointerMove);
       canvas.addEventListener("pointerleave", handlePointerLeave);
@@ -131,17 +145,11 @@ export function NeuralCanvas() {
 
     return () => {
       cancelAnimationFrame(frameId);
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", handleResize);
       canvas.removeEventListener("pointermove", handlePointerMove);
       canvas.removeEventListener("pointerleave", handlePointerLeave);
     };
   }, [prefersReducedMotion]);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden="true"
-      className="h-full min-h-[320px] w-full sm:min-h-[420px]"
-    />
-  );
+  return <canvas ref={canvasRef} aria-hidden="true" className={className} />;
 }

@@ -78,6 +78,16 @@ export const projects: Project[] = [
     linkLabel: "View project",
   },
   {
+    id: "exoplanet-explorer",
+    category: "Web App",
+    title: "Exoplanet Explorer",
+    description:
+      "A navigable 3D map of confirmed exoplanets built from real NASA Exoplanet Archive data: 36 planets across 27 systems, positioned by real coordinates with real orbital periods, radii, and masses.",
+    stackTags: ["React Three Fiber", "Three.js", "NASA API"],
+    href: "https://exoplanet-explorer-lovat.vercel.app",
+    linkLabel: "View project",
+  },
+  {
     id: "llama-xr-extended",
     category: "Machine Learning",
     title: "LLaMA-XR Extended",

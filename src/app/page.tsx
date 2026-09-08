@@ -2,6 +2,7 @@ import { Hero } from "@/components/Hero";
 import { WorkGrid } from "@/components/WorkGrid";
 import { About } from "@/components/About";
 import { Experience } from "@/components/Experience";
+import { GithubActivity } from "@/components/GithubActivity";
 import { NewsCarousel } from "@/components/NewsCarousel";
 import { ContactCta } from "@/components/ContactCta";
 import { projects } from "@/data/projects";
@@ -21,6 +22,7 @@ export default function Home() {
         panels={editorialPanels}
       />
       <Experience entries={experience} education={education} />
+      <GithubActivity />
       <NewsCarousel items={newsItems} />
       <ContactCta />
     </>

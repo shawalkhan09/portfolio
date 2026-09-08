@@ -63,6 +63,21 @@ export const projects: Project[] = [
     linkLabel: "View project",
   },
   {
+    id: "pitchdeck-live",
+    category: "Web App",
+    title: "PitchDeck.live",
+    description:
+      "AI pitch deck builder: describe a startup in one line and it generates a full deck outline via the Gemini API.",
+    stackTags: ["React", "TypeScript", "Gemini API"],
+    media: {
+      type: "image",
+      src: "/hero/pitchdeck-live.png",
+      fallbackImage: "/hero/pitchdeck-live.png",
+    },
+    href: "https://pitchdeck-live-plum.vercel.app",
+    linkLabel: "View project",
+  },
+  {
     id: "llama-xr-extended",
     category: "Machine Learning",
     title: "LLaMA-XR Extended",

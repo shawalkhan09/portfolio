@@ -1,6 +1,6 @@
 import { AuroraBackground } from "./AuroraBackground";
 
-const EMAIL = "shawalbusiness@gmail.com";
+const EMAIL = "shawalkt7042@gmail.com";
 
 export function ContactCta() {
   return (

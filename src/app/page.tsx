@@ -7,7 +7,7 @@ import { ContactCta } from "@/components/ContactCta";
 import { projects } from "@/data/projects";
 import { aboutIntro, editorialPanels } from "@/data/editorial";
 import { skillGroups } from "@/data/skills";
-import { experience } from "@/data/experience";
+import { education, experience } from "@/data/experience";
 import { newsItems } from "@/data/news";
 
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
         skillGroups={skillGroups}
         panels={editorialPanels}
       />
-      <Experience entries={experience} />
+      <Experience entries={experience} education={education} />
       <NewsCarousel items={newsItems} />
       <ContactCta />
     </>

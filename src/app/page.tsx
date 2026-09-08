@@ -1,10 +1,13 @@
 import { Hero } from "@/components/Hero";
 import { WorkGrid } from "@/components/WorkGrid";
-import { EditorialSplit } from "@/components/EditorialSplit";
+import { About } from "@/components/About";
+import { Experience } from "@/components/Experience";
 import { NewsCarousel } from "@/components/NewsCarousel";
 import { ContactCta } from "@/components/ContactCta";
 import { projects } from "@/data/projects";
-import { editorialPanels } from "@/data/editorial";
+import { aboutIntro, editorialPanels } from "@/data/editorial";
+import { skillGroups } from "@/data/skills";
+import { experience } from "@/data/experience";
 import { newsItems } from "@/data/news";
 
 export default function Home() {
@@ -14,7 +17,12 @@ export default function Home() {
     <>
       <Hero projects={featuredProjects} />
       <WorkGrid projects={projects} />
-      <EditorialSplit panels={editorialPanels} />
+      <About
+        intro={aboutIntro}
+        skillGroups={skillGroups}
+        panels={editorialPanels}
+      />
+      <Experience entries={experience} />
       <NewsCarousel items={newsItems} />
       <ContactCta />
     </>

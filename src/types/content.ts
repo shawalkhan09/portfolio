@@ -48,3 +48,17 @@ export type NewsItem = {
   image: string;
   href: string;
 };
+
+export type ExperienceEntry = {
+  id: string;
+  role: string;
+  org: string;
+  /** Free text, e.g. "2024 -- Present"; omitted from the timeline if not yet known. */
+  period?: string;
+  description?: string;
+};
+
+export type SkillGroup = {
+  category: string;
+  skills: string[];
+};

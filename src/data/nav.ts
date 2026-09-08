@@ -7,6 +7,7 @@ import type { NavSection } from "@/types/content";
 export const navSections: NavSection[] = [
   { label: "Work", href: "#work", links: [] },
   { label: "About", href: "#about", links: [] },
+  { label: "Experience", href: "#experience", links: [] },
   { label: "Updates", href: "#updates", links: [] },
   { label: "Contact", href: "#contact", links: [] },
   {

@@ -25,8 +25,6 @@ export type Project = {
   };
   href: string;
   linkLabel: string;
-  /** Shown in the hero teaser carousel; the Work grid always shows every project. */
-  featured: boolean;
 };
 
 export type EditorialPanel = {

@@ -11,11 +11,9 @@ import { education, experience } from "@/data/experience";
 import { newsItems } from "@/data/news";
 
 export default function Home() {
-  const featuredProjects = projects.filter((p) => p.featured);
-
   return (
     <>
-      <Hero projects={featuredProjects} />
+      <Hero />
       <WorkGrid projects={projects} />
       <About
         intro={aboutIntro}

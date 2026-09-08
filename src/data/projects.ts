@@ -16,7 +16,6 @@ export const projects: Project[] = [
     },
     href: "https://loan-default-app-2tq6c3nfuti4k9gzt84ry9.streamlit.app/",
     linkLabel: "View project",
-    featured: true,
   },
   {
     id: "seizure-prediction-ml",
@@ -32,7 +31,6 @@ export const projects: Project[] = [
     },
     href: "https://github.com/shawalkhan09/seizure-prediction-ml",
     linkLabel: "View project",
-    featured: true,
   },
   {
     id: "pdfhamster",
@@ -48,7 +46,6 @@ export const projects: Project[] = [
     },
     href: "https://pdfhamster.com",
     linkLabel: "View project",
-    featured: true,
   },
   {
     id: "mass",
@@ -64,7 +61,6 @@ export const projects: Project[] = [
     },
     href: "https://github.com/shawalkhan09/MASS-hackathon-2026",
     linkLabel: "View project",
-    featured: false,
   },
   {
     id: "llama-xr-extended",
@@ -75,6 +71,5 @@ export const projects: Project[] = [
     stackTags: ["Python", "PyTorch", "LLM Fine-tuning"],
     href: "https://github.com/shawalkhan09/llama-xr-extended",
     linkLabel: "View project",
-    featured: false,
   },
 ];

@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shawal Khan — Personal Portfolio
 
-## Getting Started
+Personal portfolio site for Shawal Khan (ML Engineer & Full-Stack Web Developer). A single-page site: hero, selected work, about, experience, updates, and contact.
 
-First, run the development server:
+## Stack
+
+- [Next.js](https://nextjs.org) (App Router) + TypeScript
+- [Tailwind CSS](https://tailwindcss.com) v4
+- [Framer Motion](https://motion.dev) for interactions and scroll reveals
+- Content as local typed data under `src/data/` — no CMS
+- Deployed on [Vercel](https://vercel.com)
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev` — start the dev server
+- `npm run build` — production build
+- `npm run start` — serve the production build
+- `npm run lint` — ESLint
+- `npm run format` / `npm run format:check` — Prettier
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+- `src/app/` — routes, layout, metadata, sitemap/robots, OG image
+- `src/components/` — page sections and UI
+- `src/data/` — typed content: projects, nav tree, experience, skills, news, about copy
+- `src/types/content.ts` — shared content types
+- `src/lib/site.ts` — site name, tagline, and URL
+- `public/` — static assets (project screenshots, resume, profile photo)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Site copy and links live in `src/data/` and `src/lib/site.ts`, typed via `src/types/content.ts`. Update those files rather than hardcoding text in components — the header nav, footer, and page sections all read from the same data.

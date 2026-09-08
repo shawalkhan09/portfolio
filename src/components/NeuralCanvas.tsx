@@ -137,17 +137,23 @@ export function NeuralCanvas({ className = "" }: { className?: string }) {
     seed();
     draw();
 
+    // Listen on the parent (not the canvas itself): centered content
+    // sits visually on top of the canvas as a sibling, so pointer
+    // events over it would never reach a listener on the canvas alone
+    // -- bubbling to the shared ancestor covers the whole hero area.
+    const hitArea = canvas.parentElement ?? canvas;
+
     window.addEventListener("resize", handleResize);
     if (!prefersReducedMotion) {
-      canvas.addEventListener("pointermove", handlePointerMove);
-      canvas.addEventListener("pointerleave", handlePointerLeave);
+      hitArea.addEventListener("pointermove", handlePointerMove);
+      hitArea.addEventListener("pointerleave", handlePointerLeave);
     }
 
     return () => {
       cancelAnimationFrame(frameId);
       window.removeEventListener("resize", handleResize);
-      canvas.removeEventListener("pointermove", handlePointerMove);
-      canvas.removeEventListener("pointerleave", handlePointerLeave);
+      hitArea.removeEventListener("pointermove", handlePointerMove);
+      hitArea.removeEventListener("pointerleave", handlePointerLeave);
     };
   }, [prefersReducedMotion]);
 

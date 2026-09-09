@@ -124,6 +124,11 @@ export const projects: Project[] = [
     description:
       "AI project idea generator for students: pick a course and difficulty, and Gemini returns a full spec, tools, file structure, build steps, and learning outcomes. Flask backend with Supabase magic-link auth and saved project history.",
     stackTags: ["Flask", "Gemini API", "Supabase"],
+    media: {
+      type: "image",
+      src: "/hero/launchmate.png",
+      fallbackImage: "/hero/launchmate.png",
+    },
     href: "https://shawalkhan09.pythonanywhere.com",
     linkLabel: "View project",
   },

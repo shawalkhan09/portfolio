@@ -18,6 +18,21 @@ export const projects: Project[] = [
     linkLabel: "View project",
   },
   {
+    id: "loan-default-risk-console",
+    category: "Web App",
+    title: "Loan Default Risk Console",
+    description:
+      "Productionized version of the Loan Default Prediction model: a FastAPI + JWT REST API with MongoDB-backed prediction history, a React dashboard, and CI/CD, replacing the original Streamlit demo.",
+    stackTags: ["FastAPI", "React", "MongoDB"],
+    media: {
+      type: "image",
+      src: "/hero/loan-default-risk-console.png",
+      fallbackImage: "/hero/loan-default-risk-console.png",
+    },
+    href: "https://loan-default-risk-console.vercel.app",
+    linkLabel: "View project",
+  },
+  {
     id: "seizure-prediction-ml",
     category: "Machine Learning",
     title: "Seizure Prediction",

@@ -117,4 +117,14 @@ export const projects: Project[] = [
     href: "https://github.com/shawalkhan09/llama-xr-extended",
     linkLabel: "View project",
   },
+  {
+    id: "launchmate",
+    category: "Web App",
+    title: "LaunchMate",
+    description:
+      "AI project idea generator for students: pick a course and difficulty, and Gemini returns a full spec, tools, file structure, build steps, and learning outcomes. Flask backend with Supabase magic-link auth and saved project history.",
+    stackTags: ["Flask", "Gemini API", "Supabase"],
+    href: "https://shawalkhan09.pythonanywhere.com",
+    linkLabel: "View project",
+  },
 ];

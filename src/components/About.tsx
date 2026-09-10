@@ -78,7 +78,7 @@ export function About({
             }
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className={`flex min-h-[50vh] flex-col justify-end p-8 transition-[filter] duration-300 sm:p-12 ${
+            className={`flex min-h-[50vh] flex-col justify-start p-8 transition-[filter] duration-300 sm:p-12 ${
               hovered !== null && hovered !== i ? "grayscale" : ""
             }`}
             style={{
